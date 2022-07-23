@@ -4,11 +4,13 @@ const pokemonId = document.querySelector('.pokemon_number');
 const pokemonImage = document.querySelector('.pokemon_image');
 const pokemonType1 = document.querySelector('.pokemon_type1');
 const pokemonType2 = document.querySelector('.pokemon_type2');
+const pokedex = document.querySelector('.main_pokedex');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input_search');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
+const buttonList = document.querySelector('.btn-list');
 
 let searchPokemon = 1;
 //#endregion
@@ -47,20 +49,20 @@ const renderPokemon = async (pokemon) => {
       pokemonType2.classList.remove(tipoPokemon2);
     }
 
-    let classToDelete;
     if (pokemonType1.classList.toString().includes('tipo')){
-      classToDelete = pokemonType1.classList[2];
-      pokemonType1.classList.remove(classToDelete);
+      pokemonType1.classList.remove(pokemonType1.classList[2]);
     }
     if (pokemonType2.classList.toString().includes('tipo')){
-      classToDelete = pokemonType2.classList[2];
-      pokemonType2.classList.remove(classToDelete);
+      pokemonType2.classList.remove(pokemonType2.classList[2]);
     }
 
     pokemonType1.classList.add(`tipo${tipoPokemon}`);
     pokemonType2.classList.add(`tipo${tipoPokemon2}`);
 
-    pokemonImage.src = dados['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+    if (dados.id > 649)
+      pokemonImage.src = dados['sprites']['versions']['generation-v']['black-white']['front_default'];
+    else
+      pokemonImage.src = dados['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
 
     pokemonImage.style.display = 'block';
     input.value = '';
@@ -70,9 +72,19 @@ const renderPokemon = async (pokemon) => {
     pokemonImage.style.display = 'none';
     pokemonName.innerHTML = 'Not found :c';
     pokemonId.innerHTML = '';
+    pokemonType1.innerHTML = '';
+    pokemonType2.innerHTML = '';
+    pokemonType1.classList.remove(pokemonType1.classList[2]);
+    pokemonType2.classList.remove(pokemonType2.classList[2]);
+    input.value = '';
   }
 }
 //#endregion
+
+function pokemonList () {
+  pokedex.style.display = 'none';
+}
+
 
 //#region Events
 form.addEventListener('submit', (event) => {
@@ -89,6 +101,11 @@ buttonPrev.addEventListener('click', (event) => {
 buttonNext.addEventListener('click', (event) => {
   event.preventDefault();
   renderPokemon(++searchPokemon);
+});
+
+buttonList.addEventListener('click', (event) => {
+  event.preventDefault();
+  pokemonList();
 });
 //#endregion
 

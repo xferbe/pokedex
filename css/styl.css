@@ -44,6 +44,7 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 35.5%;
   right: 17%;
   font-size: clamp(5.5px, 1.8vw, 13.3px);
+  text-overflow: clip;
 }
 
 .pokemon_name {
@@ -55,7 +56,7 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   width: 35%;
   top: 75%;
-  left: 12%;
+  left: 11%;
 }
 
 .input_search {
@@ -72,7 +73,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .buttons {
   position: absolute;
-  bottom: 11%;
+  bottom: 13%;
   left: 77%;
   width: 35%;
   transform: translate(-53%, 0);
@@ -98,6 +99,24 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 0.7rem;
 }
 
+.btn-list{
+  position: absolute;
+  width: 5%;
+  height: 7%;
+  border-radius: 25px;
+  bottom: 34%;
+  right: 80%;
+  background-color: red;
+  box-shadow: -1px 2px 0 #222, -1px 2px 0 #000;
+}
+.btn-list:hover {
+  background-color: rgb(253, 77, 77);
+  cursor: pointer;
+}
+.btn-list:active{
+  box-shadow: inset -4px 4px 0 #222;
+}
+
 .pokemon_type {
   position: absolute;
   font-weight: 600;
@@ -111,10 +130,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .poketype {
   width: 100%;
-  padding: 3%;
+  padding: 4%;
   border-radius: 5px;
   font-size: clamp(7px, 1.2vw, 0.9rem);
-  font-weight: 600;
+  font-weight: 700;
   color: rgb(0, 0, 0);
 }
 
