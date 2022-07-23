@@ -26,13 +26,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .pokedex {
   width: 100%;
-  max-width: 450px;
+  max-width: 550px;
 }
 
 .pokemon_image {
   position: absolute;
   bottom: 45%;
-  left: 22%;
+  left: 19%;
   transform: translate(5%, -1%);
   height: 18%;
 }
@@ -41,9 +41,9 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   font-weight: 600;
   color: #aaa;
-  top: 40.5%;
-  right: 15%;
-  font-size: clamp(6.5px, 1.7vw, 12.8px);
+  top: 35.5%;
+  right: 17%;
+  font-size: clamp(5.5px, 1.8vw, 13.3px);
 }
 
 .pokemon_name {
@@ -72,8 +72,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .buttons {
   position: absolute;
-  bottom: 16%;
-  left: 75%;
+  bottom: 11%;
+  left: 77%;
   width: 35%;
   transform: translate(-53%, 0);
   display: flex;
@@ -102,12 +102,13 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   font-weight: 600;
   color: rgb(255, 255, 255);
-  top: 67%;
-  right: 62%;
+  top: 40%;
+  right: 16%;
   font-size: clamp(6.5px, 1.7vw, 12.8px);
   display: flex;
   gap: 15px;
 }
+
 .poketype {
   width: 100%;
   padding: 3%;
@@ -115,10 +116,102 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: clamp(7px, 1.2vw, 0.9rem);
   font-weight: 600;
   color: rgb(0, 0, 0);
-
-
 }
-.pokemon_type1{
+
+/*#region Pokemon types*/
+.tipograss {
   border: 2px solid rgb(2, 124, 18);
-  background-color: rgb(13, 139, 1);  
+  background-color: rgb(13, 139, 1);
 }
+
+.tipopoison {
+  border: 2px solid rgb(87, 1, 104);
+  background-color: rgb(94, 2, 168);  
+}
+
+.tipofire {
+  border: 2px solid rgb(255, 72, 0);
+  background-color: rgb(241, 73, 7);  
+}
+
+.tiponormal {
+  border: 2px solid rgb(253, 204, 185);
+  background-color: rgb(240, 180, 157);  
+}
+
+.tipobug {
+  border: 2px solid rgb(166, 255, 23);
+  background-color: rgb(156, 255, 42);  
+}
+
+.tipofighting {
+  border: 2px solid rgb(255, 51, 0);
+  background-color: rgb(241, 0, 0);  
+}
+
+.tipoghost {
+  border: 2px solid rgb(119, 0, 255);
+  background-color: rgb(99, 2, 190);  
+}
+
+.tipoelectric {
+  border: 2px solid rgb(255, 196, 0);
+  background-color: rgb(255, 217, 0);  
+}
+
+.tipodark {
+  border: 2px solid rgb(34, 34, 34);
+  background-color: rgb(3, 3, 3);
+  color: white;
+}
+
+.tipoflying {
+  border: 2px solid rgb(166, 226, 228);
+  background-color: rgb(185, 242, 250);  
+}
+
+.tipopsychic {
+  border: 2px solid rgb(245, 58, 182);
+  background-color: rgb(245, 49, 180);  
+}
+
+.tipolight {
+  border: 2px solid rgb(243, 245, 155);
+  background-color: rgb(255, 246, 116);  
+}
+
+.tipoice {
+  border: 2px solid rgb(63, 239, 245);
+  background-color: rgb(55, 224, 247);  
+}
+
+.tipofairy {
+  border: 2px solid rgb(236, 115, 196);
+  background-color: rgb(248, 121, 206);  
+}
+
+.tipoground {
+  border: 2px solid rgb(194, 139, 38);
+  background-color: rgb(165, 115, 21);  
+}
+
+.tipodragon {
+  border: 2px solid rgb(100, 17, 235);
+  background-color: rgb(106, 34, 222);  
+}
+
+.tiporock {
+  border: 2px solid rgb(105, 81, 35);
+  background-color: rgb(114, 86, 34);  
+}
+
+.tipowater {
+  border: 2px solid rgb(42, 45, 219);
+  background-color: rgb(25, 0, 255);  
+}
+
+.tiposteel {
+  border: 2px solid rgb(89, 89, 99);
+  background-color: rgb(75, 75, 80);  
+}
+/*#endregion Pokemon Types*/
