@@ -44,7 +44,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-weight: 600;
   color: #aaa;
   top: 35.5%;
-  right: 17%;
+  right: 14%;
   font-size: clamp(5.5px, 1.8vw, 13.3px);
   text-overflow: clip;
 }
@@ -139,14 +139,61 @@ input[type="search"]::-webkit-search-cancel-button {
   color: rgb(0, 0, 0);
 }
 
-.notSelectable {
-  -webkit-touch-callout: none;  /* iPhone OS, Safari */
-  -webkit-user-select: none;    /* Chrome, Safari 3 */
-  -khtml-user-select: none;     /* Safari 2 */
-  -moz-user-select: none;       /* Firefox */
-  -ms-user-select: none;        /* IE10+ */
-  user-select: none;            /* Possível implementação no futuro */
-  /* cursor: default; */
+.poke_Cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+  gap: 30px;
+}
+
+.pokemon {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgb(56, 52, 52)
+}
+  .pokemon .img-containerList {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 140px;
+    height: 180px;
+    border-radius: 50%;
+  }
+    .pokemon .img-containerList img{
+    max-width: 90%;
+  }
+
+.infoList {
+  height: 90px;
+}
+
+.pokemon {
+  transition: transform .4s;
+  cursor: pointer;
+}
+
+.pokemon:hover {
+  transform: scale(1.5);
+}
+
+.pokemon .numberList {
+  font-weight: 600;
+  font-size: clamp(4px, 8vh, 20px);
+}
+
+.pokemon .nameList {
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+
+.pokemon .typeList {
+  font-size: clamp(3px, 6vh, 15px);
+  font-weight: 600;
+  margin-top: 20px;
 }
 
 /*#region Pokemon types*/
@@ -243,6 +290,16 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .tiposteel {
   border: 2px solid rgb(89, 89, 99);
-  background-color: rgb(75, 75, 80);  
+  background-color: rgb(75, 75, 80);
 }
 /*#endregion Pokemon Types*/
+
+.notSelectable {
+  -webkit-touch-callout: none;  /* iPhone OS, Safari */
+  -webkit-user-select: none;    /* Chrome, Safari 3 */
+  -khtml-user-select: none;     /* Safari 2 */
+  -moz-user-select: none;       /* Firefox */
+  -ms-user-select: none;        /* IE10+ */
+  user-select: none;            /* Possível implementação no futuro */
+  /* cursor: default; */
+}

@@ -5,6 +5,8 @@ const pokemonImage = document.querySelector('.pokemon_image');
 const pokemonType1 = document.querySelector('.pokemon_type1');
 const pokemonType2 = document.querySelector('.pokemon_type2');
 const pokedex = document.querySelector('.main_pokedex');
+const listPokedex = document.querySelector('.main_list_pokedex');
+const pokeCards = document.querySelector('.poke_Cards');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input_search');
@@ -39,7 +41,7 @@ const renderPokemon = async (pokemon) => {
       tipoPokemon2 = dados.types[1].type.name;
 
     pokemonName.innerHTML = dados.name;
-    pokemonId.innerHTML = dados.id + ' - ';
+    pokemonId.innerHTML = '#' + dados.id.toString().padStart(3,'0') + ' - ';
     pokemonType1.innerHTML = dados.types[0].type.name;
     
     if (dados.types.length > 1)
@@ -81,10 +83,45 @@ const renderPokemon = async (pokemon) => {
 }
 //#endregion
 
-function pokemonList () {
+//#region List of all pokemons
+async function pokemonList () {
   pokedex.style.display = 'none';
+  listPokedex.style.display = 'block';
+  for(let i = 1; i < 898; i++){
+    await getList(i);
+  }
 }
 
+const getList = async id => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const data = await fetch(url);
+  const pokemonList = await data.json();
+  createCard(pokemonList);
+}
+
+function createCard(pokemonList) {
+  const pokemonDivList = document.createElement('div');
+  pokemonDivList.classList.add('pokemon');
+  const poke_typeList = pokemonList.types[0].type.name;
+  const name = pokemonList.name[0].toUpperCase() + pokemonList.name.slice(1);
+  pokemonDivList.classList.add('tipo' + poke_typeList);
+
+  const pokeInnerHTML = `
+    <div class="img-containerList">
+      <img src = ${pokemonList['sprites']['versions']['generation-v']['black-white']['front_default']}
+    </div>
+
+    <div class="infoList">
+      <span class="numberList">#${pokemonList.id.toString().padStart(3, '0')}</span>
+      <h3 class="nameList">${name}</h3>
+      <small class="typeList">Type: <span class="${poke_typeList}">${poke_typeList}</span></small>
+    </div>
+  `;
+
+  pokemonDivList.innerHTML = pokeInnerHTML;
+  pokeCards.appendChild(pokemonDivList);
+}
+//#endregion
 
 //#region Events
 form.addEventListener('submit', (event) => {
