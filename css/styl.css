@@ -15,7 +15,7 @@ body {
 
 main {  
   display: inline-block;
-  margin-top: 2%;
+  margin-top: 7%;
   padding: 15px;
   position: relative;
 }
@@ -27,6 +27,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .pokedex {
   width: 100%;
   max-width: 550px;
+  pointer-events: none;
 }
 
 .pokemon_image {
@@ -35,6 +36,7 @@ input[type="search"]::-webkit-search-cancel-button {
   left: 19%;
   transform: translate(5%, -1%);
   height: 18%;
+  pointer-events: none;
 }
 
 .pokemon_data {
@@ -135,6 +137,16 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: clamp(7px, 1.2vw, 0.9rem);
   font-weight: 700;
   color: rgb(0, 0, 0);
+}
+
+.notSelectable {
+  -webkit-touch-callout: none;  /* iPhone OS, Safari */
+  -webkit-user-select: none;    /* Chrome, Safari 3 */
+  -khtml-user-select: none;     /* Safari 2 */
+  -moz-user-select: none;       /* Firefox */
+  -ms-user-select: none;        /* IE10+ */
+  user-select: none;            /* Possível implementação no futuro */
+  /* cursor: default; */
 }
 
 /*#region Pokemon types*/
