@@ -7,12 +7,15 @@ const pokemonType2 = document.querySelector('.pokemon_type2');
 const pokedex = document.querySelector('.main_pokedex');
 const listPokedex = document.querySelector('.main_list_pokedex');
 const pokeCards = document.querySelector('.poke_Cards');
+const modal_container = document.querySelector('#modal_container');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input_search');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
 const buttonList = document.querySelector('.btn-list');
+const buttonBack = document.querySelector('.btn-backPokedex');
+const buttonClose = document.querySelector('#close');
 
 let searchPokemon = 1;
 //#endregion
@@ -86,8 +89,8 @@ const renderPokemon = async (pokemon) => {
 //#region List of all pokemons
 async function pokemonList () {
   pokedex.style.display = 'none';
-  listPokedex.style.display = 'block';
-  for(let i = 1; i < 898; i++){
+  listPokedex.style.display = 'inline-block';
+  for(let i = 1; i < 899; i++){
     await getList(i);
   }
 }
@@ -105,6 +108,8 @@ function createCard(pokemonList) {
   const poke_typeList = pokemonList.types[0].type.name;
   const name = pokemonList.name[0].toUpperCase() + pokemonList.name.slice(1);
   pokemonDivList.classList.add('tipo' + poke_typeList);
+  pokemonDivList.classList.add('openModal');
+  pokemonDivList.setAttribute('id', pokemonList.id);
 
   const pokeInnerHTML = `
     <div class="img-containerList">
@@ -120,6 +125,25 @@ function createCard(pokemonList) {
 
   pokemonDivList.innerHTML = pokeInnerHTML;
   pokeCards.appendChild(pokemonDivList);
+
+  pokemonDivList.addEventListener('click', (event) => {
+    event.preventDefault();
+    infoPokemonModal(pokemonDivList.id);
+  })
+}
+
+async function infoPokemonModal(id) {
+  modal_container.classList.add('show');
+  buttonBack.style.display = 'none';
+
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const data = await fetch(url);
+  const pokemonList = await data.json();
+}
+
+function mainPokedex() {
+  pokedex.style.display = 'inline-block';
+  listPokedex.style.display = 'none';
 }
 //#endregion
 
@@ -144,6 +168,18 @@ buttonList.addEventListener('click', (event) => {
   event.preventDefault();
   pokemonList();
 });
+
+buttonBack.addEventListener('click', (event) => {
+  event.preventDefault();
+  mainPokedex();
+});
+
+buttonClose.addEventListener('click', (event) => {
+  event.preventDefault();
+  modal_container.classList.remove('show');
+  buttonBack.style.display = 'block';
+});
+
 //#endregion
 
 renderPokemon(searchPokemon);
