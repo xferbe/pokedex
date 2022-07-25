@@ -2,15 +2,19 @@
 const pokemonName = document.querySelector('.pokemon_name');
 const pokemonId = document.querySelector('.pokemon_number');
 const pokemonImage = document.querySelector('.pokemon_image');
+const pokemonImageModal = document.querySelector('.pokemon_image_modal');
 const pokemonType1 = document.querySelector('.pokemon_type1');
 const pokemonType2 = document.querySelector('.pokemon_type2');
 const pokedex = document.querySelector('.main_pokedex');
 const listPokedex = document.querySelector('.main_list_pokedex');
 const pokeCards = document.querySelector('.poke_Cards');
 const modal_container = document.querySelector('#modal_container');
+const body = document.querySelector('.body');
 
 const form = document.querySelector('.form');
+const formList = document.querySelector('.form-list');
 const input = document.querySelector('.input_search');
+const inputList = document.querySelector('.input_search_list');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
 const buttonList = document.querySelector('.btn-list');
@@ -99,10 +103,10 @@ const getList = async id => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const data = await fetch(url);
   const pokemonList = await data.json();
-  createCard(pokemonList);
+  createCardList(pokemonList);
 }
 
-function createCard(pokemonList) {
+function createCardList(pokemonList) {  
   const pokemonDivList = document.createElement('div');
   pokemonDivList.classList.add('pokemon');
   const poke_typeList = pokemonList.types[0].type.name;
@@ -133,24 +137,35 @@ function createCard(pokemonList) {
 }
 
 async function infoPokemonModal(id) {
-  modal_container.classList.add('show');
-  buttonBack.style.display = 'none';
+  inputList.value = '';
+  if (id < 898){
+    modal_container.classList.add('show');
+    body.classList.add('show');
+    buttonBack.classList.add('disabled');
 
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const data = await fetch(url);
-  const pokemonList = await data.json();
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    const data = await fetch(url);
+    const pokemonList = await data.json();
+    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['front_default'];
+  }
 }
 
 function mainPokedex() {
   pokedex.style.display = 'inline-block';
   listPokedex.style.display = 'none';
 }
+
 //#endregion
 
 //#region Events
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   renderPokemon(input.value);
+});
+
+formList.addEventListener('submit', (event) => {
+  event.preventDefault();
+  infoPokemonModal(inputList.value);
 });
 
 buttonPrev.addEventListener('click', (event) => {
@@ -177,7 +192,9 @@ buttonBack.addEventListener('click', (event) => {
 buttonClose.addEventListener('click', (event) => {
   event.preventDefault();
   modal_container.classList.remove('show');
-  buttonBack.style.display = 'block';
+  body.classList.remove('show');
+  buttonBack.classList.remove('disabled');
+  pokemonImageModal.src = '';
 });
 
 //#endregion

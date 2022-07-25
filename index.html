@@ -15,7 +15,7 @@
 
   <title>Pokédex</title>
 </head>
-<body>
+<body class="body">
   
   <main class="notSelectable main_pokedex">
     <img src="#" alt="pokemon" class="pokemon_image">
@@ -36,7 +36,6 @@
         class="input_search"
         placeholder="Name or number"
         required
-        maxlength="16";
       />
     </form>
 
@@ -51,20 +50,31 @@
   </main>
 
   <main class="notSelectable main_list_pokedex" style="display: none;">
-    <div class="backPokedex">
-      <button class="btn-backPokedex">
-        <i class="material-icons">
-          keyboard_backspace
-        </i>
-      </button>
+    <div class="backSearch">
+      <div class="backPokedex">
+        <button class="btn-backPokedex">
+          <i class="material-icons">
+            keyboard_backspace
+          </i>
+        </button>
+      </div>
+      <form class="form-list">
+        <input
+          type="search"
+          class="input_search_list"
+          placeholder="Name or number"
+          required
+        />
+      </form>
     </div>
     <div class="poke_Cards"></div>
 
     <div class="modal-container" id="modal_container">
       <div class="modal">
-        <h1>Modal</h1>
+        <h1></h1>
+        <img src="#" alt="pokemon" class="pokemon_image_modal">
         <p>
-          TEST
+          
         </p>
         <button id="close">
           Close
