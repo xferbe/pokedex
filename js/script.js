@@ -117,7 +117,7 @@ function createCardList(pokemonList) {
 
   const pokeInnerHTML = `
     <div class="img-containerList">
-      <img src = ${pokemonList['sprites']['versions']['generation-v']['black-white']['front_default']}
+      <img src = ${pokemonList['sprites']['other']['home']['front_default']}
     </div>
 
     <div class="infoList">
@@ -144,10 +144,10 @@ async function infoPokemonModal(id) {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const data = await fetch(url);
   const pokemonList = await data.json();
-  if (pokemonList.id > 649)
-    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['front_default'];
-  else
-    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
+  //if (pokemonList.id > 649)
+    pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
+  //else
+  //  pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
 }
 
 function mainPokedex() {

@@ -72,15 +72,14 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .form-list {
   position: fixed;
-  width: 75%;
-  padding-left: 40%;
+  width: 30%;
+  left: 35%;
   z-index: 2;
   margin-top: 0.1%;
 }
 
 .backSearch {
-  /*height: 7.33%;*/
-  height: clamp(3%, 9%, 12%);
+  height: 9%;
   position: fixed;
   background-color: #6ab7f5;
   width: 99%;
@@ -88,6 +87,12 @@ input[type="search"]::-webkit-search-cancel-button {
   padding-left: 0.5%;
   z-index: 1;
 }
+
+  @media (max-width: 1230px) {
+    .backSearch{
+      height: 43px;
+    }
+  }
 
 .input_search {
   width: 100%;
@@ -103,13 +108,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .input_search_list {
   padding: 2%;
-  width: 40%;
+  width: 100%;
   outline: none;
   border: 2px solid #333;
   border-radius: 5px;
   font-weight: 600;
   color: #3a444d;
-  font-size:  clamp(7px, 1.2vw, 0.9rem);
+  font-size:  clamp(12px, 2.2vw, 1.5rem);
   box-shadow: -2px 2px  #888, -4px 5px 0 #333;
 }
 
@@ -188,7 +193,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-top: 0px;
   text-align:initial;
   padding: 10px;
-  min-width: 100vh;
+  min-width: 70vh;
 }
 
 .poke_Cards {
@@ -217,7 +222,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 50%;
   }
     .pokemon .img-containerList img{
-    max-width: 90%;
+    max-width: 70%;
   }
 
 .infoList {
@@ -251,6 +256,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .material-icons {  
   font-size: clamp(1px, 7vh, 50px) !important;  
+}
+@media (max-width: 800px) {
+  .material-icons{
+    font-size: clamp(1px, 7vh, 30px) !important;
+  }
 }
 
 .btn-backPokedex {
