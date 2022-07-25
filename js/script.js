@@ -138,16 +138,16 @@ function createCardList(pokemonList) {
 
 async function infoPokemonModal(id) {
   inputList.value = '';
-  if (id < 898){
-    modal_container.classList.add('show');
-    body.classList.add('show');
-    buttonBack.classList.add('disabled');
-
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const data = await fetch(url);
-    const pokemonList = await data.json();
-    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
-  }
+  modal_container.classList.add('show');
+  body.classList.add('show');
+  buttonBack.classList.add('disabled');
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const data = await fetch(url);
+  const pokemonList = await data.json();
+  if (pokemonList.id > 649)
+    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['front_default'];
+  else
+    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
 }
 
 function mainPokedex() {
