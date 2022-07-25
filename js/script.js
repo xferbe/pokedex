@@ -146,7 +146,7 @@ async function infoPokemonModal(id) {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const data = await fetch(url);
     const pokemonList = await data.json();
-    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['front_default'];
+    pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
   }
 }
 
