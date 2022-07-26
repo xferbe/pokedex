@@ -193,7 +193,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-top: 0px;
   text-align:initial;
   padding: 10px;
-  min-width: 70vh;
+  min-width: 80vh;
 }
 
 .poke_Cards {
@@ -260,6 +260,13 @@ input[type="search"]::-webkit-search-cancel-button {
 @media (max-width: 800px) {
   .material-icons{
     font-size: clamp(1px, 7vh, 30px) !important;
+  }
+  .btn-backPokedex{
+    width: 6%;
+  }
+  .input_search_list{
+    padding: 3%;
+    font-size: clamp(12px, 5.2vw, 1.5rem);
   }
 }
 

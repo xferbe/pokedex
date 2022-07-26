@@ -10,6 +10,7 @@ const listPokedex = document.querySelector('.main_list_pokedex');
 const pokeCards = document.querySelector('.poke_Cards');
 const modal_container = document.querySelector('#modal_container');
 const body = document.querySelector('.body');
+const imgPokedex = document.querySelector('.pokedex');
 
 const form = document.querySelector('.form');
 const formList = document.querySelector('.form-list');
@@ -38,6 +39,7 @@ const fetchPokemon = async (pokemon) => {
 
 //#region get data from the API
 const renderPokemon = async (pokemon) => {
+  imgPokedex.src = './images/Pokedex.png';
   pokemonName.innerHTML = 'Loading...';
   const dados = await fetchPokemon(pokemon);
 
@@ -46,6 +48,36 @@ const renderPokemon = async (pokemon) => {
     let tipoPokemon2;
     if (dados.types.length > 1)
       tipoPokemon2 = dados.types[1].type.name;
+
+    switch (tipoPokemon){
+      case 'fire':
+        imgPokedex.src = './images/Pokedex-Fire.png';
+        break;
+      case 'water':
+        imgPokedex.src = './images/Pokedex-Water.png';
+        break;
+      case 'flying':
+        imgPokedex.src = './images/Pokedex-Flying.png';
+        break;
+      case 'ground':
+        imgPokedex.src = './images/Pokedex-desert.png';
+        break;
+      case 'rock':
+        imgPokedex.src = './images/Pokedex-Cave.png';
+        break;
+      case 'steel':
+        imgPokedex.src = './images/Pokedex-Cave.png';
+        break;        
+      case 'dark':
+        imgPokedex.src = './images/Pokedex-Dark.png';
+        break;
+      case 'ghost':
+        imgPokedex.src = './images/Pokedex-Dark.png';
+        break;
+      case 'ice':
+        imgPokedex.src = './images/Pokedex-Ice.png';
+        break;
+    }
 
     pokemonName.innerHTML = dados.name;
     pokemonId.innerHTML = '#' + dados.id.toString().padStart(3,'0') + ' - ';
@@ -138,16 +170,18 @@ function createCardList(pokemonList) {
 
 async function infoPokemonModal(id) {
   inputList.value = '';
-  modal_container.classList.add('show');
-  body.classList.add('show');
-  buttonBack.classList.add('disabled');
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const data = await fetch(url);
-  const pokemonList = await data.json();
-  //if (pokemonList.id > 649)
-    pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
-  //else
-  //  pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
+  if (id <= 898){
+    modal_container.classList.add('show');
+    body.classList.add('show');
+    buttonBack.classList.add('disabled');
+    const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
+    const data = await fetch(url);
+    const pokemonList = await data.json();
+    //if (pokemonList.id > 649)
+      pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
+    //else
+    //  pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
+  }
 }
 
 function mainPokedex() {
