@@ -46,6 +46,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .pokemon_image_modal {
   height: 40%;
+  position: absolute;
+  left: 32%;
+  top: 5%;
 }
 
 .pokemon_data {
@@ -299,6 +302,30 @@ input[type="search"]::-webkit-search-cancel-button {
     box-shadow: -2px 3px 0 rgb(59, 59, 59), -3px 5px 0 rgb(51, 49, 49);
   }
 
+#close {
+  width: 10%;
+  height: 5%;  
+  border: 2px solid #000;
+  border-radius: 5px;
+  font-size: clamp(7px, 1.2vw, 0.9rem);
+  font-weight: 600;
+  color: white;
+  background-color: #444;
+  box-shadow: -2px 3px 0 #222, -3px 5px 0 #000;
+  cursor: pointer;
+  position: absolute;
+  bottom: 11%;    
+  left: 46%;
+}
+  #close:hover{
+    background-color: rgb(90, 77, 77);
+    box-shadow: -2px 3px 0 rgb(59, 59, 59), -3px 5px 0 rgb(51, 49, 49);
+  }
+  #close:active {
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.7rem;
+  }
+
 /*#region Pokemon Modal*/
 .modal-container {
   background-color: rgba(0, 0, 0, 0.3);
@@ -339,18 +366,6 @@ input[type="search"]::-webkit-search-cancel-button {
       font-size: 14px;
       opacity: 0.7;
     }
-
-#close {
-  background-color: #47a386;
-  border: 0;
-  border-radius: 5px;
-  padding: 10px 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  font-size: 14px;
-  margin-top: 2%;
-  cursor: pointer;
-}
 /*#endregion Pokemon Modal*/
 
 /*#region Pokemon types*/

@@ -39,7 +39,7 @@ const fetchPokemon = async (pokemon) => {
 
 //#region get data from the API
 const renderPokemon = async (pokemon) => {
-  imgPokedex.src = './images/Pokedex.png';
+  
   pokemonName.innerHTML = 'Loading...';
   const dados = await fetchPokemon(pokemon);
 
@@ -77,6 +77,8 @@ const renderPokemon = async (pokemon) => {
       case 'ice':
         imgPokedex.src = './images/Pokedex-Ice.png';
         break;
+      default:
+        imgPokedex.src = './images/Pokedex.png';
     }
 
     pokemonName.innerHTML = dados.name;
@@ -234,3 +236,4 @@ buttonClose.addEventListener('click', (event) => {
 //#endregion
 
 renderPokemon(searchPokemon);
+imgPokedex.src = './images/Pokedex.png';
