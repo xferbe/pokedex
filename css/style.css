@@ -96,7 +96,16 @@ input[type="search"]::-webkit-search-cancel-button {
       height: 43px;
     }
   }
-
+  @media (max-width: 885px) {
+    .modal-container{
+      left: -216px !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .modal-container{
+      left: -340px !important;
+    }
+  }
 .input_search {
   width: 100%;
   padding: 6%;
@@ -345,6 +354,7 @@ input[type="search"]::-webkit-search-cancel-button {
   z-index: 3;
   opacity: 1;
   pointer-events: auto;
+  min-width: 160vh;
 }
 
   .modal {
