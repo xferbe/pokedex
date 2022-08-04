@@ -12,6 +12,15 @@ const modal_container = document.querySelector('#modal_container');
 const body = document.querySelector('.body');
 const imgPokedex = document.querySelector('.pokedex');
 
+const nameModal = document.querySelector('.name_modal');
+const weightPokemon = document.querySelector('.weight_pokemon');
+const heightPokemon = document.querySelector('.height_pokemon');
+const hpModal = document.querySelector('.hp_modal');
+const defenseModal = document.querySelector('.defense_modal');
+const attackModal = document.querySelector('.attack_modal');
+const type1Modal = document.querySelector('.type1_modal');
+const type2Modal = document.querySelector('.type2_modal');
+
 const form = document.querySelector('.form');
 const formList = document.querySelector('.form-list');
 const input = document.querySelector('.input_search');
@@ -179,10 +188,16 @@ async function infoPokemonModal(id) {
     const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
     const data = await fetch(url);
     const pokemonList = await data.json();
-    //if (pokemonList.id > 649)
-      pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
-    //else
-    //  pokemonImageModal.src = pokemonList['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];  
+    pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
+    nameModal.innerHTML = pokemonList['name'];
+    hpModal.innerHTML = `HP ${Math.floor(Math.random() * pokemonList['stats'][0]['base_stat']) + 1} /${pokemonList['stats'][0]['base_stat']}`;
+    type1Modal.innerHTML = pokemonList['types'][0]['type']['name'];
+    if (pokemonList['types'].length > 1)
+      type2Modal.innerHTML = ` / ${pokemonList['types'][1]['type']['name']}`;
+    else
+      type2Modal.innerHTML = '';
+    weightPokemon.innerHTML = `${pokemonList['weight']}kg`;
+    heightPokemon.innerHTML = `${pokemonList['height']}m`;
   }
 }
 
