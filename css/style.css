@@ -9,7 +9,7 @@
 
 body {
   text-align: center;
-  background: linear-gradient(to bottom, #6ab7f5, #fff);
+  background: #6ab7f5;
   min-height: 100vh;
   overflow: auto;
 }
@@ -335,6 +335,10 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 0.7rem;
   }
 
+.body-main {
+  background: linear-gradient(to bottom, #6ab7f5, #fff);
+}
+
 /*#region Pokemon Modal*/
 .modal-container {
   background-color: rgba(0, 0, 0, 0.3);
@@ -366,6 +370,7 @@ input[type="search"]::-webkit-search-cancel-button {
     max-width: 100%;
     height: 45%;
     text-align: center;
+    border-radius: 87px;
   }
 
     .modal p {
@@ -416,19 +421,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .type_height_weight_modal {
-  width: 24%;
+  width: 33%;
   height: 4%;
   border-bottom: groove;
+  border-color: black;
   position: absolute;
   bottom: 47%;
   border-radius: 10px;
-  left: 38%;
+  left: 33%;
 }
 .types_modal {
   text-transform: capitalize;
   text-align: start;
   margin-top: 3px;
-  margin-left: 5%;
+  margin-left: 3%;
 }
   .type1_modal {
     font-size: clamp(4px, 17px, 21px);
@@ -436,7 +442,7 @@ input[type="search"]::-webkit-search-cancel-button {
   .type_span {
     font-size: 13px;
     position: absolute;
-    left: 11%;
+    left: 9%;
   }
 
 .weight_modal {
@@ -445,10 +451,11 @@ input[type="search"]::-webkit-search-cancel-button {
   .weight_span {
     font-size: 13px;
     position: absolute;
-    left: 46%;
+    left: 50%;
   }
   .weight_pokemon {
     font-size: clamp(4px, 17px, 21px);
+    margin-left: 5%;
   }
 
 .height_modal {
@@ -562,7 +569,86 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2px solid rgb(89, 89, 99);
   background-color: rgb(75, 75, 80);
 }
-/*#endregion Pokemon Types*/
+/*#endregion Pokemon types*/
+
+/*#region Pokemon types modal*/
+.modalgrass {
+  background-color: rgb(194 248 188);
+}
+
+.modalpoison {
+  background-color: rgb(223 189 251);
+}
+
+.modalfire {
+  background-color: rgb(245 147 108);
+}
+
+.modalnormal {
+  background-color: rgb(248 221 210);
+}
+
+.modalbug {
+  background-color: rgb(204 255 145);
+}
+
+.modalfighting {
+  background-color: rgb(237 127 127);
+}
+
+.modalghost {
+  background-color: rgb(189 133 241);
+}
+
+.modalelectric {
+  background-color: rgb(253 239 161);
+}
+
+.modaldark {
+  background-color: rgb(88 88 88);
+  color: white;
+}
+
+.modalflying {
+  background-color: rgb(185, 242, 250);
+}
+
+.modalpsychic {
+  background-color: rgb(246 156 216);
+}
+
+.modallight {
+  background-color: rgb(255, 246, 116);
+}
+
+.modalice {
+  background-color: rgb(196 248 255);
+}
+
+.modalfairy {
+  background-color: rgb(235 180 217);
+}
+
+.modalground {
+  background-color: rgb(219 180 106);
+}
+
+.modaldragon {
+  background-color: rgb(172 140 224);
+}
+
+.modalrock {
+  background-color: rgb(166 147 113);
+}
+
+.modalwater {
+  background-color: rgb(132 157 206);
+}
+
+.modalsteel {
+  background-color: rgb(147 147 150);
+}
+/*#endregion Pokemon Types Modal*/
 
 .notSelectable {
   -webkit-touch-callout: none;  /* iPhone OS, Safari */

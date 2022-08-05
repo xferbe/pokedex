@@ -12,6 +12,7 @@ const modal_container = document.querySelector('#modal_container');
 const body = document.querySelector('.body');
 const imgPokedex = document.querySelector('.pokedex');
 
+const modal = document.querySelector('.modal');
 const nameModal = document.querySelector('.name_modal');
 const weightPokemon = document.querySelector('.weight_pokemon');
 const heightPokemon = document.querySelector('.height_pokemon');
@@ -20,6 +21,8 @@ const defenseModal = document.querySelector('.defense_modal');
 const attackModal = document.querySelector('.attack_modal');
 const type1Modal = document.querySelector('.type1_modal');
 const type2Modal = document.querySelector('.type2_modal');
+const barGreen = document.querySelector('.green');
+const barRed = document.querySelector('.red');
 
 const form = document.querySelector('.form');
 const formList = document.querySelector('.form-list');
@@ -175,15 +178,16 @@ function createCardList(pokemonList) {
 
   pokemonDivList.addEventListener('click', (event) => {
     event.preventDefault();
-    infoPokemonModal(pokemonDivList.id);
+    infoPokemonModal(pokemonDivList.id, poke_typeList);
   })
 }
 
-async function infoPokemonModal(id) {
+async function infoPokemonModal(id, typePoke) {
   inputList.value = '';
   if (id <= 898){
     modal_container.classList.add('show');
     body.classList.add('show');
+    modal.classList.add(`modal${typePoke}`)
     buttonBack.classList.add('disabled');
     const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
     const data = await fetch(url);
@@ -196,8 +200,46 @@ async function infoPokemonModal(id) {
       type2Modal.innerHTML = ` / ${pokemonList['types'][1]['type']['name']}`;
     else
       type2Modal.innerHTML = '';
-    weightPokemon.innerHTML = `${pokemonList['weight']}kg`;
-    heightPokemon.innerHTML = `${pokemonList['height']}m`;
+    weightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['weight']) + 1}kg`;
+    heightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['height']) + 1}m`;
+
+    let randomHp = hpModal.innerHTML.split('/');
+    randomHp = parseFloat(randomHp[0].replace(/[^0-9]/g,''));
+    let maxHp = parseFloat(pokemonList['stats'][0]['base_stat']);
+    let redBar = percentage(maxHp, (maxHp - randomHp));
+    //let greenBar = 100 - (maxHp + (maxHp - randomHp)) + '%';
+    barRed.style.width = redBar;
+    barGreen.style.width = greenBar;
+
+  }
+}
+
+function percentage(partialValue, totalValue) {
+  return (100 * partialValue) / totalValue;
+} 
+
+async function infoPokemonModalSubmit(id) {
+  inputList.value = '';
+  const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
+  const data = await fetch(url);
+  if (data.status === 200){
+    const pokemonList = await data.json();
+    modal_container.classList.add('show');
+    body.classList.add('show');
+    buttonBack.classList.add('disabled');
+    pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
+    modal.classList.add(`modal${pokemonList['types'][0]['type']['name']}`);
+    nameModal.innerHTML = pokemonList['name'];
+    hpModal.innerHTML = `HP ${Math.floor(Math.random() * pokemonList['stats'][0]['base_stat']) + 1}/${pokemonList['stats'][0]['base_stat']}`;
+    type1Modal.innerHTML = pokemonList['types'][0]['type']['name'];
+    if (pokemonList['types'].length > 1)
+      type2Modal.innerHTML = ` / ${pokemonList['types'][1]['type']['name']}`;
+    else
+      type2Modal.innerHTML = '';
+    weightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['weight']) + 1}kg`;
+    heightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['height']) + 1}m`;
+  } else {
+    window.alert('Pokémon not found :c');
   }
 }
 
@@ -216,7 +258,7 @@ form.addEventListener('submit', (event) => {
 
 formList.addEventListener('submit', (event) => {
   event.preventDefault();
-  infoPokemonModal(inputList.value);
+  infoPokemonModalSubmit(inputList.value);
 });
 
 buttonPrev.addEventListener('click', (event) => {
@@ -233,10 +275,12 @@ buttonNext.addEventListener('click', (event) => {
 buttonList.addEventListener('click', (event) => {
   event.preventDefault();
   pokemonList();
+  body.classList.remove('body-main');
 });
 
 buttonBack.addEventListener('click', (event) => {
   event.preventDefault();
+  body.classList.add('body-main');
   mainPokedex();
 });
 
@@ -246,6 +290,7 @@ buttonClose.addEventListener('click', (event) => {
   body.classList.remove('show');
   buttonBack.classList.remove('disabled');
   pokemonImageModal.src = '';
+  modal.classList.remove(modal.classList[1]);
 });
 
 //#endregion
