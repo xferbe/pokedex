@@ -201,22 +201,15 @@ async function infoPokemonModal(id, typePoke) {
     else
       type2Modal.innerHTML = '';
     weightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['weight']) + 1}kg`;
-    heightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['height']) + 1}m`;
+    heightPokemon.innerHTML = `${(Math.floor(Math.random() * pokemonList['height']) + 1) * 10}cm`;
 
     let randomHp = hpModal.innerHTML.split('/');
     randomHp = parseFloat(randomHp[0].replace(/[^0-9]/g,''));
     let maxHp = parseFloat(pokemonList['stats'][0]['base_stat']);
-    let redBar = percentage(maxHp, (maxHp - randomHp));
-    //let greenBar = 100 - (maxHp + (maxHp - randomHp)) + '%';
-    barRed.style.width = redBar;
-    barGreen.style.width = greenBar;
-
+    barGreen.style.width = (100 * randomHp) / maxHp + '%'; 
+    barRed.style.width = 100 - (parseFloat((100 * randomHp) / maxHp)) + '%';
   }
 }
-
-function percentage(partialValue, totalValue) {
-  return (100 * partialValue) / totalValue;
-} 
 
 async function infoPokemonModalSubmit(id) {
   inputList.value = '';
@@ -237,7 +230,7 @@ async function infoPokemonModalSubmit(id) {
     else
       type2Modal.innerHTML = '';
     weightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['weight']) + 1}kg`;
-    heightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['height']) + 1}m`;
+    heightPokemon.innerHTML = `${(Math.floor(Math.random() * pokemonList['height']) + 1) * 10}cm`;
   } else {
     window.alert('Pokémon not found :c');
   }
@@ -295,5 +288,5 @@ buttonClose.addEventListener('click', (event) => {
 
 //#endregion
 
-renderPokemon(searchPokemon);
 imgPokedex.src = './images/Pokedex.png';
+renderPokemon(searchPokemon);
