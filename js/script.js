@@ -178,20 +178,19 @@ function createCardList(pokemonList) {
 
   pokemonDivList.addEventListener('click', (event) => {
     event.preventDefault();
-    infoPokemonModal(pokemonDivList.id, poke_typeList);
+    infoPokemonModal(pokemonDivList.id);
   })
 }
 
-async function infoPokemonModal(id, typePoke) {
-  inputList.value = '';
-  if (id <= 898){
+async function infoPokemonModal(id) {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
+  const data = await fetch(url);
+  if (data.status === 200){
     modal_container.classList.add('show');
     body.classList.add('show');
-    modal.classList.add(`modal${typePoke}`)
     buttonBack.classList.add('disabled');
-    const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
-    const data = await fetch(url);
     const pokemonList = await data.json();
+    modal.classList.add(`modal${pokemonList['types'][0]['type']['name']}`)
     pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
     nameModal.innerHTML = pokemonList['name'];
     hpModal.innerHTML = `HP ${Math.floor(Math.random() * pokemonList['stats'][0]['base_stat']) + 1} /${pokemonList['stats'][0]['base_stat']}`;
@@ -206,39 +205,10 @@ async function infoPokemonModal(id, typePoke) {
     let randomHp = hpModal.innerHTML.split('/');
     randomHp = parseFloat(randomHp[0].replace(/[^0-9]/g,''));
     let maxHp = parseFloat(pokemonList['stats'][0]['base_stat']);
-    let redBar = percentage(maxHp, (maxHp - randomHp));
-    //let greenBar = 100 - (maxHp + (maxHp - randomHp)) + '%';
-    barRed.style.width = redBar;
-    barGreen.style.width = greenBar;
-
-  }
-}
-
-function percentage(partialValue, totalValue) {
-  return (100 * partialValue) / totalValue;
-} 
-
-async function infoPokemonModalSubmit(id) {
-  inputList.value = '';
-  const url = `https://pokeapi.co/api/v2/pokemon/${id.toString().toLowerCase()}`;
-  const data = await fetch(url);
-  if (data.status === 200){
-    const pokemonList = await data.json();
-    modal_container.classList.add('show');
-    body.classList.add('show');
-    buttonBack.classList.add('disabled');
-    pokemonImageModal.src = pokemonList['sprites']['other']['home']['front_default'];
-    modal.classList.add(`modal${pokemonList['types'][0]['type']['name']}`);
-    nameModal.innerHTML = pokemonList['name'];
-    hpModal.innerHTML = `HP ${Math.floor(Math.random() * pokemonList['stats'][0]['base_stat']) + 1}/${pokemonList['stats'][0]['base_stat']}`;
-    type1Modal.innerHTML = pokemonList['types'][0]['type']['name'];
-    if (pokemonList['types'].length > 1)
-      type2Modal.innerHTML = ` / ${pokemonList['types'][1]['type']['name']}`;
-    else
-      type2Modal.innerHTML = '';
-    weightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['weight']) + 1}kg`;
-    heightPokemon.innerHTML = `${Math.floor(Math.random() * pokemonList['height']) + 1}m`;
+    barGreen.style.width = (100 * randomHp) / maxHp + '%'; 
+    barRed.style.width = 100 - (parseFloat((100 * randomHp) / maxHp)) + '%';
   } else {
+    inputList.value = '';
     window.alert('Pokémon not found :c');
   }
 }
@@ -258,7 +228,7 @@ form.addEventListener('submit', (event) => {
 
 formList.addEventListener('submit', (event) => {
   event.preventDefault();
-  infoPokemonModalSubmit(inputList.value);
+  infoPokemonModal(inputList.value);
 });
 
 buttonPrev.addEventListener('click', (event) => {
