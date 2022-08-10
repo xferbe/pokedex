@@ -209,10 +209,8 @@ async function infoPokemonModal(id) {
     barRed.style.width = 100 - (parseFloat((100 * randomHp) / maxHp)) + '%';
   } else {
     inputList.value = '';
-    window.alert('Pokémon not found :c');
   }
 }
-
 function mainPokedex() {
   pokedex.style.display = 'inline-block';
   listPokedex.style.display = 'none';
@@ -265,5 +263,5 @@ buttonClose.addEventListener('click', (event) => {
 
 //#endregion
 
-renderPokemon(searchPokemon);
 imgPokedex.src = './images/Pokedex.png';
+renderPokemon(searchPokemon);

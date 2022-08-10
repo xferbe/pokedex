@@ -103,7 +103,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
   @media (max-width: 600px) {
     .modal-container{
-      left: -340px !important;
+      left: -290px !important;
     }
   }
 .input_search {
